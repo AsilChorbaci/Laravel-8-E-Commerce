@@ -13,7 +13,7 @@
         </div>
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin-home') }}">
                     <i class="fe fe-home fe-16"></i>
                     <span class="ml-3 item-text">Asil</span>
                 </a>
@@ -31,7 +31,7 @@
         </p>
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item w-100">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('admin-category') }}">
                     <i class="fe fe-list fe-16"></i>
                     <span class="ml-3 item-text">Categories</span>
                 </a>
@@ -39,15 +39,15 @@
             <li class="nav-item dropdown">
                 <a href="#forms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
                     <i class="fe fe-message-square fe-16"></i>
-                    <span class="ml-3 item-text">Posts</span>
+                    <span class="ml-3 item-text">Products</span>
                 </a>
                 <ul class="collapse list-unstyled pl-4 w-100" id="forms">
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">New Post</span>
+                        <a class="nav-link pl-3" href="{{ route('admin-create-product') }}"><span class="ml-1 item-text">New Product</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link pl-3" href="#"><span class="ml-1 item-text">My Posts</span>
+                        <a class="nav-link pl-3" href="{{ route('admin-product') }}"><span class="ml-1 item-text">All Products</span>
                         </a>
                     </li>
                 </ul>
