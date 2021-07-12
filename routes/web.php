@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 
@@ -35,6 +36,14 @@ Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function
         Route::post('update/{id}', [ProductController::class, 'update'])->name('admin-update-product');
         Route::get('delete/{id}', [ProductController::class, 'destroy'])->name('admin-delete-product');
         Route::get('show', [ProductController::class, 'show'])->name('admin-show-product');
+    });
+
+    # Product Gallery
+    Route::prefix('image')->group(function (){
+        Route::get('create/{product_id}', [ImageController::class, 'create'])->name('admin-create-image');
+        Route::post('store/{id}', [ImageController::class, 'store'])->name('admin-store-image');
+        Route::get('delete/{id}/{product_id}', [ImageController::class, 'destroy'])->name('admin-delete-image');
+        Route::get('show', [ImageController::class, 'show'])->name('admin-show-image');
     });
 
 });
