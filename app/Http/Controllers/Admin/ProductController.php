@@ -30,7 +30,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $list = Category::all();
+        $list = Category::with('children')->get();
         return view('admin.add-product', ['list' => $list]);
     }
 
@@ -80,7 +80,7 @@ class ProductController extends Controller
     public function edit(product $product, $id)
     {
         $data = Product::find($id);
-        $list = Category::all();
+        $list = Category::with('children')->get();
         return view('admin.edit-product', ['data' => $data, 'list' => $list]);
     }
 
@@ -98,7 +98,6 @@ class ProductController extends Controller
             $data->title = $request->input('title');
             $data->keywords = $request->input('parent_id');
             $data->description = $request->input('description');
-            $data->image = Storage::putFile('images', $request->file('image'));
             $data->price = $request->input('price');
             $data->user_id = Auth::id();
             $data->quantity = $request->input('quantity');
@@ -107,6 +106,10 @@ class ProductController extends Controller
             $data->minquantity = $request->input('minquantity');
             $data->status = $request->input('status');
             $data->detail = $request->input('detail');
+            if ($request->file('image') != null)
+            {
+                $data->image = Storage::putFile('images', $request->file('image'));
+            }
             $data->save();
             return redirect()->route('admin-product');
     }

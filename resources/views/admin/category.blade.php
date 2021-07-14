@@ -15,7 +15,7 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Parent</th>
+                                        <th>Category</th>
                                         <th>Title</th>
                                         <th>Status</th>
                                         <th>Edit</th>
@@ -26,12 +26,11 @@
                                     @foreach( $list as $rs)
                                         <tr>
                                             <td>{{ $rs->id }}</td>
-                                            <td>{{ $rs->parent_id }}</td>
+                                            <td>{{ \App\Http\Controllers\Admin\CategoryController::getParentsTree($rs, $rs->title) }}</td>
                                             <td>{{ $rs->title }}</td>
                                             <td><span class="badge badge-pill badge-warning">{{ $rs->status }}</span></td>
                                             <td><a href="{{ route('admin-edit-category', ['id' => $rs->id]) }}">Edit</a></td>
                                             <td><a href="{{ route('admin-delete-category', ['id' => $rs->id]) }}" onclick="return confirm('Category will be deleted')">Delete</a></td>
-
                                         </tr>
                                     @endforeach
                                     </tbody>

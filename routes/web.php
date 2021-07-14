@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin;
 
@@ -16,6 +17,10 @@ use App\Http\Controllers\Admin;
 Route::middleware(['auth:sanctum', 'verified'])->prefix('admin')->group(function (){
 
     Route::get('/', [HomeController::class,'index'])->name('admin-home');
+
+    // Setting
+    Route::get('setting', [SettingController::class,'index'])->name('admin-setting');
+    Route::post('setting/update', [SettingController::class,'update'])->name('admin-update-setting');
 
     // Category Routes
     Route::prefix('category')->group(function (){

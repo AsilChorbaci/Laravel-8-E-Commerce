@@ -15,13 +15,12 @@
                                 <form action="{{ route('admin-update-category', ['id' => $data->id]) }}" method="post">
                                     @csrf
                                     <div class="form-group row">
-                                        <label class="col-sm-1 col-form-label">Parent</label>
+                                        <label class="col-sm-1 col-form-label">Category</label>
                                         <div class="col-sm-6">
                                             <select id="inputState" name="parent_id" class="form-control">
-                                                <option value="{{ $data->parent_id }}" selected></option>
                                                 <option value="0">Main Category</option>
                                                 @foreach($list as $rs)
-                                                    <option value="{{ $rs->id }}">{{ $rs->title  }}</option>
+                                                    <option value="{{ $rs->id }}" @if ($rs->id == $data->parent_id) selected="selected" @endif>{{ \App\Http\Controllers\Admin\CategoryController::getParentsTree($rs, $rs->title) }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

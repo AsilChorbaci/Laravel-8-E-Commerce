@@ -60,6 +60,13 @@
                 </a>
             </li>
 
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{ route('admin-setting') }}">
+                    <i class="fe fe-settings fe-16"></i>
+                    <span class="ml-3 item-text">Setting</span>
+                </a>
+            </li>
+
         </ul>
     </nav>
 </aside>

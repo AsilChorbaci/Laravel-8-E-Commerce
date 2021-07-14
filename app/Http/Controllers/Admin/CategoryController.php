@@ -9,6 +9,21 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    protected $appends = [
+
+    ];
+
+    public static function getParentsTree($category, $title)
+    {
+        if ($category->parent_id == 0){
+            return $title;
+        }
+        $parent = Category::find($category->parent_id);
+        $title = $parent->title . '>' . $title;
+        return CategoryController::getParentsTree($parent, $title);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +31,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $list =DB::table('categories')->get();
+        $list = Category::with('children')->get();
         return view('admin.category', ['list' => $list]);
     }
 
@@ -73,7 +88,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $data = Category::find($id);
-        $list = DB::table('categories')->get();
+        $list = Category::with('children')->get();
         return view('admin.edit-category', ['data' => $data , 'list' => $list]);
     }
 
@@ -93,7 +108,7 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Category $category, $id)
     {

@@ -22,7 +22,7 @@
                                         <div class="col-sm-6">
                                             <select id="inputState" name="category_id" class="form-control">
                                                 @foreach($list as $rs)
-                                                    <option value="{{ $rs->id }}">{{ $rs->title  }}</option>
+                                                    <option value="{{ $rs->id }}">{{ \App\Http\Controllers\Admin\CategoryController::getParentsTree($rs, $rs->title) }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -52,9 +52,9 @@
                                     <div class="form-group row">
                                         <label for="inputEmail3" class="col-sm-1 col-form-label">Image</label>
                                         <div class="col-sm-6">
-                                            <input type="file" name="image" value="{{$data->image}}" class="form-control" id="inputEmail3" placeholder="Add Category Keywords">
+                                            <input type="file" name="image" class="form-control" id="inputEmail3" placeholder="Add Category Keywords">
                                             @if($data->image)
-                                                <img src="{{ Storage::url($data->image) }}" height="100" alt="">
+                                                <img class="mt-2" src="{{ Storage::url($data->image) }}" height="100" alt="">
                                             @endif
                                         </div>
                                     </div>

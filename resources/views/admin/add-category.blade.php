@@ -20,7 +20,7 @@
                                             <select id="inputState" name="parent_id" class="form-control">
                                                 <option value="0" selected>Main Category</option>
                                                 @foreach($list as $rs)
-                                                    <option value="{{ $rs->id }}">{{ $rs->title  }}</option>
+                                                    <option value="{{ $rs->id }}">{{ \App\Http\Controllers\Admin\CategoryController::getParentsTree($rs, $rs->title) }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -59,8 +59,8 @@
                                         <div class="col-sm-6">
                                             <select id="inputState" name="status" class="form-control">
                                                 <option selected>Choose Category Status</option>
-                                                <option>1</option>
-                                                <option>0</option>
+                                                <option value="1">True</option>
+                                                <option value="0">False</option>
 
                                             </select>
                                         </div>
